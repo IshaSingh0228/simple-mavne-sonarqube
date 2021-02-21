@@ -1,16 +1,16 @@
 pipeline{
    agent any;
    tools{
-       maven 'maven'
-       jdk 'JDK11'
+       maven 'maven3'
+       jdk 'jdk11'
    }
   stages {
           stage("build & SonarQube analysis") {
             agent any
             steps {
               withSonarQubeEnv('sonar-server-local') {
-                sh 'java -version'
-                sh 'mvn clean package sonar:sonar'
+                bat 'java -version'
+                bat 'mvn clean package sonar:sonar'
               }
             }
           }
